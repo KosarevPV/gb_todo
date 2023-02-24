@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from authapp import models as authapp_models
+
+
+@admin.register(authapp_models.CustomUser)
+class UsersAdmin(admin.ModelAdmin):
+    pass

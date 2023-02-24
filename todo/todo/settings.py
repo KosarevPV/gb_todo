@@ -69,6 +69,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'authapp.CustomUser'
+
 WSGI_APPLICATION = 'todo.wsgi.application'
 
 
