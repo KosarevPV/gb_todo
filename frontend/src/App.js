@@ -2,6 +2,8 @@ import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import UserList from "./components/User";
+import Footer from "./components/Footer";
+import Menu from "./components/Menu";
 import axios from "axios";
 
 class App extends React.Component {
@@ -23,11 +25,13 @@ class App extends React.Component {
     }
 
     render() {
-        return (
+        return [
+            <Menu/>,
             <div>
-                <UserList users={this.state.users} />
-            </div>
-        )
+                <UserList users={this.state.users}/>
+            </div>,
+            <Footer/>
+        ]
     }
 }
 
