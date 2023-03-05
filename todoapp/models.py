@@ -15,3 +15,7 @@ class TODO(models.Model):
     updated = models.DateTimeField(auto_now=True, editable=False)
     user_creator = models.ForeignKey(CustomUser, models.PROTECT)
     active = models.BooleanField(default=True)
+
+    def delete(self, *args):
+        self.active = False
+        self.save()
