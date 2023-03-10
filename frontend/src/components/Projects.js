@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const ProjectItem = ({project}) => {
     return (
@@ -25,5 +25,25 @@ const ProjectList = ({projects}) => {
         </table>
     )
 }
+
+// const ProjectTODOs = ({todos}) => {
+//     let {id} = useParams()
+//
+//     let filter_items = todos.filter((todo) => todo.project === parseInt(id))
+//
+//     return (
+//         <table>
+//             <tr>
+//                 <th>ID</th>
+//                 <th>Text</th>
+//                 <th>Created</th>
+//                 <th>Updated</th>
+//                 <th>Project</th>
+//                 <th>User Creator</th>
+//             </tr>
+//             {filter_items.map((todo) => <TODOItem todo={todo}/>)}
+//         </table>
+//     )
+// }
 
 export default ProjectList

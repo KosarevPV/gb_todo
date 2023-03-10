@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import axios from "axios";
 import ProjectList from "./components/Projects";
-import {HashRouter, BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NotFound404 from "./components/NotFound404";
 
 
@@ -51,11 +51,7 @@ class App extends React.Component {
             <div>
                 <BrowserRouter>
                     <header>
-                        <ul>
-                            <li><Link to='/'>Projects</Link></li>
-                            <li><Link to='/users'>Users</Link></li>
-                            <li><Link to='/todos'>TODOs</Link></li>
-                        </ul>
+                        <Menu/>
                     </header>
                     <main>
                         <div>
@@ -66,6 +62,9 @@ class App extends React.Component {
                                     <UserList users={this.state.users}/>}/>
                                 <Route exact path='/todos' component={() =>
                                     <TODOList todos={this.state.todos}/>}/>
+                                <Route path="/projects-todos/:id">
+                                    <ProjectTODOs todos={this.state.todos}/>
+                                </Route>
                                 <Route component={NotFound404}/>
                             </Switch>
                         </div>
