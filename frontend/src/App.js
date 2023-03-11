@@ -5,7 +5,7 @@ import {TODOList, ProjectTODOs} from "./components/TODOs";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import axios from "axios";
-import ProjectList from "./components/Projects";
+import {ProjectList, ProjectDetail} from "./components/Projects";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NotFound404 from "./components/NotFound404";
 
@@ -46,6 +46,7 @@ class App extends React.Component {
         }).catch(error => console.log(error))
     }
 
+
     render() {
         return (
             <div>
@@ -65,6 +66,10 @@ class App extends React.Component {
                                 <Route path="/projects-todos/:id">
                                     <ProjectTODOs todos={this.state.todos}/>
                                 </Route>
+                                <Route path="/project/:id">
+                                    <ProjectDetail projects={this.state.projects}
+                                                   users={this.state.users}/>
+                                </Route>
                                 <Route component={NotFound404}/>
                             </Switch>
                         </div>
@@ -73,7 +78,8 @@ class App extends React.Component {
                 </BrowserRouter>
             </div>
 
-        );
+        )
+            ;
     }
 }
 

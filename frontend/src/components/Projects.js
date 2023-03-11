@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 const ProjectItem = ({project}) => {
     return (
         <tr>
-            <td>{project.id}</td>
+            <td><Link to={`/project/${project.id}`}>{project.id}</Link></td>
             <td>{project.name}</td>
             <td>{project.repoUrl}</td>
             <td>{project.users}</td>
@@ -12,7 +12,7 @@ const ProjectItem = ({project}) => {
     )
 }
 
-const ProjectList = ({projects}) => {
+export const ProjectList = ({projects}) => {
     return (
         <table>
             <tr>
@@ -26,24 +26,33 @@ const ProjectList = ({projects}) => {
     )
 }
 
-// const ProjectTODOs = ({todos}) => {
-//     let {id} = useParams()
-//
-//     let filter_items = todos.filter((todo) => todo.project === parseInt(id))
-//
-//     return (
-//         <table>
-//             <tr>
-//                 <th>ID</th>
-//                 <th>Text</th>
-//                 <th>Created</th>
-//                 <th>Updated</th>
-//                 <th>Project</th>
-//                 <th>User Creator</th>
-//             </tr>
-//             {filter_items.map((todo) => <TODOItem todo={todo}/>)}
-//         </table>
-//     )
-// }
 
-export default ProjectList
+const ProjectUser = ({item}) => {
+    return (
+        <li>
+        {item.username} ({item.email})
+    </li>
+    )
+}
+
+const ProjectDetailItem = ({project, users}) => {
+    return (
+        <div>
+            <h1>{project.name}</h1>
+            <h4>URL: {project.repoUrl ? project.repoUrl: 'not entered'}</h4>
+            <ul>
+                {project.users.map((user) => <ProjectUser item={users[user - 1]} />)}
+            </ul>
+        </div>
+    )
+}
+
+export const ProjectDetail = ({projects, users}) => {
+    let {id} = useParams();
+    let item = projects.filter((project) => project.id === parseInt(id))
+    return (
+        <div>
+            {item.map((project) => <ProjectDetailItem project={project} users={users}/>)}
+        </div>
+    )
+}
