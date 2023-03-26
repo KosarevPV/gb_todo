@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from graphene_django.views import GraphQLView
 from rest_framework import permissions
 
 from rest_framework.routers import DefaultRouter
@@ -63,4 +64,5 @@ urlpatterns = [
         template_name='swagger-ui.html',
         extra_context={'schema_url': 'schema-swagger-ui'}
     ), name='swagger-ui'),
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
 ]
