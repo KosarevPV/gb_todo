@@ -1,18 +1,23 @@
 import React from 'react'
 import {Link, useParams} from "react-router-dom";
 
-const ProjectItem = ({project}) => {
+const ProjectItem = ({project, deleteProject}) => {
     return (
         <tr>
             <td><Link to={`/project/${project.id}`}>{project.id}</Link></td>
             <td>{project.name}</td>
             <td>{project.repoUrl}</td>
             <td>{project.users}</td>
+            <td>
+                <button onClick={() => deleteProject(project.id)}
+                        type='button'>Delete
+                </button>
+            </td>
         </tr>
     )
 }
 
-export const ProjectList = ({projects}) => {
+export const ProjectList = ({projects, deleteProject}) => {
     return (
         <table>
             <tr>
@@ -20,8 +25,10 @@ export const ProjectList = ({projects}) => {
                 <th>Name</th>
                 <th>Url</th>
                 <th>Users</th>
+                <th></th>
             </tr>
-            {projects.map((project) => <ProjectItem project={project}/>)}
+            {projects.map((project) => <ProjectItem project={project}
+                                                    deleteProject={deleteProject}/>)}
         </table>
     )
 }
@@ -30,8 +37,8 @@ export const ProjectList = ({projects}) => {
 const ProjectUser = ({item}) => {
     return (
         <li>
-        {item.username} ({item.email})
-    </li>
+            {item.username} ({item.email})
+        </li>
     )
 }
 
@@ -39,9 +46,9 @@ const ProjectDetailItem = ({project, users}) => {
     return (
         <div>
             <h1>{project.name}</h1>
-            <h4>URL: {project.repoUrl ? project.repoUrl: 'not entered'}</h4>
+            <h4>URL: {project.repoUrl ? project.repoUrl : 'not entered'}</h4>
             <ul>
-                {project.users.map((user) => <ProjectUser item={users[user - 1]} />)}
+                {project.users.map((user) => <ProjectUser item={users[user - 1]}/>)}
             </ul>
         </div>
     )
