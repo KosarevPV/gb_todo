@@ -58,7 +58,7 @@ const ProjectDetailItem = ({project, users}) => {
     )
 }
 
-export const ProjectDetail = ({projects, users}) => {
+export const ProjectDetail = ({projects, users }) => {
     let {id} = useParams();
     let item = projects.filter((project) => project.id === parseInt(id))
     return (
