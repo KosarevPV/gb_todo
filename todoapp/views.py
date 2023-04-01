@@ -28,4 +28,6 @@ class TODOModelViewSet(ModelViewSet):
     pagination_class = TODOLimitOffsetPagination
     filterset_class = TODOFilter
 
+    # def create(self, request, *args, **kwargs):
+    #     pass
 
