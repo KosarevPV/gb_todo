@@ -1,3 +1,3 @@
 FROM nginx:1.22.1-alpine
 COPY ./build /var/www
-COPY ./frontend/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
