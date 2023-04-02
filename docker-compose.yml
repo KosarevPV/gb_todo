@@ -17,6 +17,7 @@ services:
     command: bash -c "
       ./wait-for-postgres.sh db
       && python manage.py migrate
+      && python manage.py delete_all_users
       && python manage.py add_test_users
       && python manage.py runserver 0.0.0.0:8080
       "
